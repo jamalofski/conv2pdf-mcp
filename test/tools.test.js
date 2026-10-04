@@ -213,8 +213,11 @@ test('a refusal of the API becomes a tool error the model can act on, and leaves
     [400, { error: 'invalid_page_range', range: '9-12', total_pages: 1 }, 'extract_pdf_pages', /"9-12" are not valid for this PDF of 1 page\./],
     [400, { error: 'password_too_short', min: 6 }, 'protect_pdf', /at least 6 characters/],
     [422, { error: 'some_new_code' }, 'compress_pdf', /refused the request \(some_new_code\)/],
-    [500, { error: 'conversion_failed' }, 'compress_pdf', /could not process this file.*do not count/],
-    [502, {}, 'compress_pdf', /temporarily unavailable/],
+    [500, { error: 'conversion_failed' }, 'compress_pdf', /could not process this file.*is not counted against the quota/],
+    [504, { error: 'conversion_timeout' }, 'compress_pdf', /took too long.*is not counted against the quota/],
+    // The API keeps the quota of a refusal that follows the reading of the file: no promise here.
+    [422, { error: 'source_unreadable' }, 'compress_pdf', /^conv2pdf could not read this file: it may be damaged or incomplete\.$/],
+    [502, {}, 'compress_pdf', /^conv2pdf is temporarily unavailable: try again in a few minutes\.$/],
   ];
   for (const [status, body, tool, expected] of cases) {
     const t = await setup({ respond: (call) => (call.method === 'POST' ? { status, body } : undefined), files: { 'doc.pdf': 'a pdf', 'other.pdf': 'a pdf' } });

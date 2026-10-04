@@ -93,8 +93,10 @@ const MESSAGES = {
     'This e-book cannot be converted: its pages are full-screen images (comics, picture books, manga), and their layout does not survive the conversion to PDF.',
   epub_too_long: 'The e-book is longer than the 1,500 pages conv2pdf converts at once.',
   output_too_large: 'The result is too large to be delivered.',
-  conversion_failed: 'conv2pdf could not process this file. Failed conversions do not count against the quota.',
-  conversion_timeout: 'The conversion took too long and was stopped. Failed conversions do not count against the quota.',
+  // The API refunds the quota on these two, and only on these: a refusal that follows
+  // the reading of the file (unreadable PDF, wrong page range) stays counted.
+  conversion_failed: 'conv2pdf could not process this file. The failure is on its side and is not counted against the quota.',
+  conversion_timeout: 'The conversion took too long and was stopped. It is not counted against the quota.',
   file_expired: 'The converted file is no longer available on conv2pdf.',
   job_deleted: 'The conversion was deleted on conv2pdf before it could be downloaded.',
 };
@@ -110,7 +112,7 @@ export function apiErrorText(error, overrides = {}) {
   if (message) return typeof message === 'function' ? message(body, retryAfter) : message;
   if (status === 401) return MESSAGES.invalid_api_key;
   if (status >= 500) {
-    return 'conv2pdf is temporarily unavailable. Failed conversions do not count against the quota: try again in a few minutes.';
+    return 'conv2pdf is temporarily unavailable: try again in a few minutes.';
   }
   return code ? `conv2pdf refused the request (${code}).` : `conv2pdf returned HTTP ${status}.`;
 }
