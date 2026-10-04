@@ -1,0 +1,48 @@
+# Publishes the package to npm on every version tag push, with an npm provenance
+# statement.
+#
+# Authentication is npm Trusted Publishing (OIDC): the package on npmjs.com trusts
+# this repository and this workflow file, so no npm token is stored anywhere.
+#
+# To release: set the version in package.json and server.json, date its section in
+# CHANGELOG.md, commit, then push a tag named after the version.
+
+name: Publish
+
+on:
+  push:
+    tags:
+      # Matches 1.0.0, 1.2.3, 2.0.0-rc.1, etc.
+      - '*.*.*'
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Mints the OIDC token used by Trusted Publishing and the provenance statement.
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 'lts/*'
+          registry-url: 'https://registry.npmjs.org'
+
+      # The package has no dependency: nothing is installed in the job that can publish.
+      - name: Test
+        run: npm test
+
+      - name: The tag is the version of the package
+        run: test "$(node -p "require('./package.json').version")" = "$GITHUB_REF_NAME"
+
+      - name: Publish
+        run: npm publish --access public

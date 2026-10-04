@@ -1,0 +1,47 @@
+{
+  "name": "conv2pdf-mcp",
+  "version": "1.0.0",
+  "description": "Official MCP server of the conv2pdf API: an AI assistant converts Office documents, images and e-books to PDF, and merges, splits, compresses, protects or converts the PDFs of your computer. Hosted in France.",
+  "license": "MIT",
+  "homepage": "https://conv2pdf.com/en/api/",
+  "mcpName": "com.conv2pdf/conv2pdf",
+  "type": "module",
+  "bin": {
+    "conv2pdf-mcp": "bin/conv2pdf-mcp.js"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "conv2pdf",
+    "pdf",
+    "pdf conversion",
+    "word to pdf",
+    "docx to pdf",
+    "pdf to word",
+    "merge pdf",
+    "compress pdf"
+  ],
+  "author": {
+    "name": "Jamal Tantaoui",
+    "email": "contact@conv2pdf.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamalofski/conv2pdf-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jamalofski/conv2pdf-mcp/issues"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check-tools": "node scripts/check-tools.mjs"
+  }
+}

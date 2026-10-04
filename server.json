@@ -1,0 +1,38 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.conv2pdf/conv2pdf",
+  "title": "conv2pdf",
+  "description": "Convert Office files, images and e-books to PDF; merge, compress or protect local PDFs.",
+  "version": "1.0.0",
+  "websiteUrl": "https://conv2pdf.com/en/api/",
+  "icons": [
+    {
+      "src": "https://conv2pdf.com/apple-touch-icon.png",
+      "mimeType": "image/png",
+      "sizes": ["180x180"]
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/jamalofski/conv2pdf-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "conv2pdf-mcp",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "CONV2PDF_API_KEY",
+          "description": "conv2pdf API key, created in the Developer tab of the conv2pdf dashboard",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
