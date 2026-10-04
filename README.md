@@ -80,6 +80,13 @@ npm run check-tools
 
 compares the extensions `convert_to_pdf` routes on with what the live API accepts (`GET /v1/tools`).
 
+### Releasing
+
+1. Set the version in `package.json` and `server.json`, and date its section in `CHANGELOG.md`.
+2. Run `npm test` and `npm run check-tools`.
+3. Commit, then push a tag named after the version: the **Publish** workflow publishes the package to npm through Trusted Publishing, with a provenance statement.
+4. Publish the entry of the [MCP Registry](https://registry.modelcontextprotocol.io): `mcp-publisher login http --domain conv2pdf.com`, then `mcp-publisher publish`. The name `com.conv2pdf/conv2pdf` is proved by the public key served at `https://conv2pdf.com/.well-known/mcp-registry-auth`.
+
 ## Resources
 
 - [conv2pdf API documentation](https://conv2pdf.com/en/api/docs/)
