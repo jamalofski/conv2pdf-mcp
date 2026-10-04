@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1 (2026-10-05)
+
+- The instructions given to the assistant follow the quota rule of the API: a refused setting, such as a page range that does not exist, is no longer counted as a conversion. A file that conv2pdf reads and then refuses still is.
+- README: on Windows, the Claude Code command needs `cmd /c` before `npx`.
+
 ## 1.0.0 (2026-10-05)
 
 First release.

@@ -14,8 +14,9 @@ export const INSTRUCTIONS =
   'protecting or unlocking PDFs. Give a tool the path of the file: the result is written next to it, or at ' +
   'output_path, and its path is returned. The files are uploaded to conv2pdf, hosted in France, which deletes ' +
   'them once the result is downloaded. Each conversion uses one unit of the quota of the API key, including one ' +
-  'that conv2pdf refuses after reading the file (an unreadable file, a page range that does not exist); a failure ' +
-  'on the side of conv2pdf is not counted. get_quota tells what is left.';
+  'that conv2pdf refuses after reading the file (an unreadable or scanned PDF, too many pages); a refused setting, ' +
+  'such as a page range that does not exist, and a failure on the side of conv2pdf are not counted. get_quota ' +
+  'tells what is left.';
 
 // convert_to_pdf picks the conv2pdf tool from the extension of the file. These lists are
 // the `accepted_exts` of GET /v1/tools: `npm run check-tools` compares them.
