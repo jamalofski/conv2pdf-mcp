@@ -16,6 +16,8 @@ In Claude Code:
 claude mcp add --env CONV2PDF_API_KEY=cpdf_live_... --transport stdio conv2pdf -- npx -y conv2pdf-mcp
 ```
 
+On Windows, put `cmd /c` before `npx`.
+
 In Claude Desktop, Cursor and the other clients configured with a JSON file:
 
 ```json
