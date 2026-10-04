@@ -1,6 +1,6 @@
 # conv2pdf-mcp
 
-Official [Model Context Protocol](https://modelcontextprotocol.io) server of the [conv2pdf API](https://conv2pdf.com/en/api/). Your AI assistant converts Word, Excel, PowerPoint, Pages, images and e-books to PDF, converts PDFs to Word or to images, and merges, compresses, protects, rotates or numbers the PDFs that are on your computer. Processing runs on OVH servers in Gravelines, France: no transfer outside the EU, no US service in the chain.
+Official [Model Context Protocol](https://modelcontextprotocol.io) server of the [conv2pdf API](https://conv2pdf.com/en/api/). Your AI assistant converts Word, Excel, PowerPoint, Pages, images and e-books to PDF, converts PDFs to Word or to images, and merges, compresses, protects, rotates or numbers the PDFs that are on your computer. Processing runs on OVHcloud servers in France: no transfer outside the EU, no US service in the chain.
 
 [Installation](#installation) · [Tools](#tools) · [How it behaves](#how-it-behaves) · [Development](#development)
 
