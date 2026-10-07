@@ -1,0 +1,17 @@
+{
+  "name": "conv2pdf",
+  "description": "The conv2pdf plugin: the MCP server of the conv2pdf API and the skill that tells an assistant how to use it.",
+  "owner": {
+    "name": "Jamal Tantaoui",
+    "email": "contact@conv2pdf.com",
+    "url": "https://conv2pdf.com"
+  },
+  "plugins": [
+    {
+      "name": "conv2pdf",
+      "source": "./plugin",
+      "description": "Convert Office documents, images and e-books to PDF, convert PDFs to Word or to images, and merge, compress, protect or number the PDFs of your computer. Hosted in France.",
+      "category": "productivity"
+    }
+  ]
+}

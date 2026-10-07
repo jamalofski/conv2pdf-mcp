@@ -32,6 +32,15 @@ In Claude Desktop, Cursor and the other clients configured with a JSON file:
 }
 ```
 
+Or, in Claude Code, install the plugin: the same server, with a skill that tells the assistant which tool to call, in which order, and what a call costs.
+
+```
+/plugin marketplace add jamalofski/conv2pdf-mcp
+/plugin install conv2pdf@conv2pdf
+```
+
+Claude Code asks for the API key when the plugin is enabled, and keeps it in the credential store of the system, not in a settings file. To set it later, run `/plugin configure conv2pdf@conv2pdf`, or open `/plugin`, **Installed** tab, conv2pdf, **Configure options**. A server you added by hand with the `npx -y conv2pdf-mcp` command takes precedence over the one of the plugin.
+
 Then ask for what you need: "convert report.docx to PDF", "merge these three PDFs", "compress scan.pdf and protect it with a password".
 
 ## Tools
@@ -82,9 +91,20 @@ npm run check-tools
 
 compares the extensions `convert_to_pdf` routes on with what the live API accepts (`GET /v1/tools`).
 
+### Plugin
+
+`plugin/` holds the Claude Code plugin: its manifest, the `.mcp.json` that starts the published package with `npx`, and the skill, `plugin/skills/conv2pdf/SKILL.md`. `.claude-plugin/marketplace.json` is the catalog that lets Claude Code install the plugin from this repository. Neither is part of the npm package. `npm test` checks that the plugin is at the version of the package and that the skill names the tools the server has.
+
+```bash
+claude plugin validate . --strict
+claude --plugin-dir ./plugin
+```
+
+check the manifests, then start a session with the plugin loaded from the folder, without installing it. A user gets a change of the plugin or of the skill when the version changes: it ships with a release.
+
 ### Releasing
 
-1. Set the version in `package.json` and `server.json`, and date its section in `CHANGELOG.md`.
+1. Set the version in `package.json`, `server.json` and `plugin/.claude-plugin/plugin.json`, and date its section in `CHANGELOG.md`.
 2. Run `npm test` and `npm run check-tools`.
 3. Commit, then push a tag named after the version: the **Publish** workflow publishes the package to npm through Trusted Publishing, with a provenance statement.
 4. Publish the entry of the [MCP Registry](https://registry.modelcontextprotocol.io): `mcp-publisher login http --domain conv2pdf.com`, then `mcp-publisher publish`. The name `com.conv2pdf/conv2pdf` is proved by the public key served at `https://conv2pdf.com/.well-known/mcp-registry-auth`.

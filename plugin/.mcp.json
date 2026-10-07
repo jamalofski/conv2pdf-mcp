@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "conv2pdf": {
+      "command": "npx",
+      "args": ["-y", "conv2pdf-mcp"],
+      "env": {
+        "CONV2PDF_API_KEY": "${user_config.api_key}"
+      }
+    }
+  }
+}

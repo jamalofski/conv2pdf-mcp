@@ -1,0 +1,22 @@
+{
+  "name": "conv2pdf",
+  "version": "1.0.1",
+  "description": "Convert Office documents, images and e-books to PDF, convert PDFs to Word or to images, and merge, compress, protect or number the PDFs of your computer. Hosted in France.",
+  "author": {
+    "name": "Jamal Tantaoui",
+    "email": "contact@conv2pdf.com",
+    "url": "https://conv2pdf.com"
+  },
+  "homepage": "https://conv2pdf.com/en/api/",
+  "repository": "https://github.com/jamalofski/conv2pdf-mcp",
+  "license": "MIT",
+  "keywords": ["pdf", "pdf conversion", "word to pdf", "pdf to word", "merge pdf", "compress pdf", "mcp"],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "conv2pdf API key",
+      "description": "Starts with cpdf_live_. Create it in the Developer tab of your conv2pdf dashboard: https://conv2pdf.com/en/dashboard/#developer",
+      "sensitive": true
+    }
+  }
+}
