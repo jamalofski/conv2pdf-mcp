@@ -41,6 +41,8 @@ Or, in Claude Code, install the plugin: the same server, with a skill that tells
 
 Claude Code asks for the API key when the plugin is enabled, and keeps it in the credential store of the system, not in a settings file. To set it later, run `/plugin configure conv2pdf@conv2pdf`, or open `/plugin`, **Installed** tab, conv2pdf, **Configure options**. A server you added by hand with the `npx -y conv2pdf-mcp` command takes precedence over the one of the plugin.
 
+For another agent that loads `SKILL.md` skills, add the server as above and take the skill alone: [`plugin/skills/conv2pdf/SKILL.md`](plugin/skills/conv2pdf/SKILL.md) in this repository, also listed on [Agensi](https://www.agensi.io/skills/conv2pdf-convert-and-edit-pdfs-from-your-agent).
+
 Then ask for what you need: "convert report.docx to PDF", "merge these three PDFs", "compress scan.pdf and protect it with a password".
 
 ## Tools
@@ -108,10 +110,12 @@ check the manifests, then start a session with the plugin loaded from the folder
 2. Run `npm test` and `npm run check-tools`.
 3. Commit, then push a tag named after the version: the **Publish** workflow publishes the package to npm through Trusted Publishing, with a provenance statement.
 4. Publish the entry of the [MCP Registry](https://registry.modelcontextprotocol.io): `mcp-publisher login http --domain conv2pdf.com`, then `mcp-publisher publish`. The name `com.conv2pdf/conv2pdf` is proved by the public key served at `https://conv2pdf.com/.well-known/mcp-registry-auth`.
+5. When the skill changed, upload it again to its [Agensi listing](https://www.agensi.io/skills/conv2pdf-convert-and-edit-pdfs-from-your-agent), as a new version: a ZIP of a `conv2pdf/` folder that holds the `SKILL.md`. Nothing updates the listing from this repository.
 
 ## Resources
 
 - [conv2pdf API documentation](https://conv2pdf.com/en/api/docs/)
+- [conv2pdf skill on Agensi](https://www.agensi.io/skills/conv2pdf-convert-and-edit-pdfs-from-your-agent)
 - [Model Context Protocol specification](https://modelcontextprotocol.io/specification/2026-07-28)
 
 ## Support
